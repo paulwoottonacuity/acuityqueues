@@ -2,11 +2,11 @@
 $queuelist = queues_list();
 $qrows = '';
 foreach($queuelist as $q){
-	$qrows .= '<tr><td>'.$q[0].'</td><td>'.$q[1].'</td><td><a href="?display=queues&view=form&extdisplay='.urlencode($q[0]).'"><i class="fa fa-edit"></i></a>&nbsp;<a href="?display=queues&action=delete&account='.urlencode($q[0]).'" class="delAction"><i class="fa fa-trash"></i></a></td></tr>';
+	$qrows .= '<tr><td>'.$q[0].'</td><td>'.$q[1].'</td><td><a href="?display=acuityqueues&view=form&extdisplay='.urlencode($q[0]).'"><i class="fa fa-edit"></i></a>&nbsp;<a href="?display=acuityqueues&action=delete&account='.urlencode($q[0]).'" class="delAction"><i class="fa fa-trash"></i></a></td></tr>';
 }
 ?>
 <div id="toolbar-all">
-	<a href="?display=queues&amp;view=form" class="btn btn-primary"><i class="fa fa-plus"></i> <?php echo _("Add Queue") ?></a>
+	<a href="?display=acuityqueues&amp;view=form" class="btn btn-primary"><i class="fa fa-plus"></i> <?php echo _("Add Queue") ?></a>
 </div>
 <table id="qgrid" data-cookie="true" data-cookie-id-table="queuecookie"  data-toolbar="#toolbar-all" data-maintain-selected="true" data-show-columns="true" data-show-toggle="true" data-toggle="table" data-pagination="true" data-search="true"class="table table-striped">
 <thead>

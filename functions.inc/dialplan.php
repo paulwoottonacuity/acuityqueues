@@ -81,6 +81,7 @@ function queues_get_config($engine) {
 
 				$grppre = (isset($q['prefix'])?$q['prefix']:'');
 				$alertinfo = (isset($q['alertinfo'])?$q['alertinfo']:'');
+				$callinfo = (isset($q['callinfo'])?$q['callinfo']:'');
 				$rvolume = (isset($q['rvolume'])?$q['rvolume']:'');
 				$rvol_mode = (isset($q['rvol_mode'])?$q['rvol_mode']:'dontcare');
 
@@ -133,6 +134,11 @@ function queues_get_config($engine) {
 				}
 				$ext->add($c, $exten, '', new ext_set('__RVOL_MODE', $rvol_mode));// RVOL_MODE : setting the mode of rvol {force,yes,no,dontcare,never)
 				$ext->add($c, $exten, '', new ext_execif('$["${QAINFO}"!=""]', 'Set', '__ALERT_INFO=${QAINFO}'));
+
+				// Set Call_Info
+				$cinfo = $callinfo != '' ? str_replace(';', '\;', $callinfo) : ' ';
+				$ext->add($c, $exten, '', new ext_set('CALLINFO', $cinfo));
+				$ext->add($c, $exten, '', new ext_gosub(1,'s','autoanswer', ',${CALLINFO}'));
 
 				$joinannounce_id = (isset($q['joinannounce_id'])?$q['joinannounce_id']:'');
 				$joinannounce = $joinannounce_id ? recordings_get_file($joinannounce_id) : ' ';

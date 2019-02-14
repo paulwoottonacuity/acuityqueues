@@ -1,9 +1,9 @@
 <module>
-	<rawname>queues</rawname>
+	<rawname>acuityqueues</rawname>
 	<repo>standard</repo>
-	<name>Queues</name>
+	<name>Acuity Queues</name>
 	<version>14.0.2.23</version>
-	<publisher>Sangoma Technologies Corporation</publisher>
+	<publisher>Acuity</publisher>
 	<license>GPLv2+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-2.0.txt</licenselink>
 	<category>Applications</category>
@@ -77,13 +77,13 @@
 		<module>core ge 13.0.22</module>
 	</depends>
 	<menuitems>
-		<queues needsenginedb="yes">Queues</queues>
+		<acuityqueues needsenginedb="yes">Queues</acuityqueues>
 	</menuitems>
 	<popovers>
-		<queues>
-			<display>queues</display>
+		<acuityqueues>
+			<display>acuityqueues</display>
 			<view>form</view>
-		</queues>
+		</acuityqueues>
 	</popovers>
 	<supported>
 		<version>14.0</version>
@@ -100,6 +100,7 @@
 			<field name="descr" type="string" length="35" default=""/>
 			<field name="grppre" type="string" length="100" default=""/>
 			<field name="alertinfo" type="string" length="254" default=""/>
+			<field name="callinfo" type="string" length="254" default=""/>
 			<field name="ringing" type="boolean" default="0"/>
 			<field name="maxwait" type="string" length="8" default=""/>
 			<field name="password" type="string" length="20" default=""/>
@@ -121,6 +122,4 @@
 			<field name="callback_id" type="string" length="8" default=""/>
 		</table>
 	</database>
-	<location>release/2.11/queues-2.11.0.11.tgz</location>
-	<md5sum>71b1461cc558320b5f3ecf238d093da6</md5sum>
 </module>

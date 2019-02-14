@@ -677,10 +677,10 @@ for ($i=15; $i <= 300; $i+=15) {
 	$slopts .= '<option value="'.$i.'" '.($i == $default ? ' SELECTED' : '').'>'.queues_timeString($i,true).'</option>';
 }
 //hooks
-$hookdata = \FreePBX::Queues()->hookTabs();
+$hookdata = \FreePBX::Acuityqueues()->hookTabs();
 ?>
-<form class="fpbx-submit" autocomplete="off" name="editQ" action="config.php?display=queues" method="post" onsubmit="return checkQ(editQ);" data-fpbx-delete="config.php?display=queues&amp;account=<?php echo urlencode($extdisplay) ?>&amp;action=delete">
-<input type="hidden" name="display" value="queues">
+<form class="fpbx-submit" autocomplete="off" name="editQ" action="config.php?display=acuityqueues" method="post" onsubmit="return checkQ(editQ);" data-fpbx-delete="config.php?display=acuityqueues&amp;account=<?php echo urlencode($extdisplay) ?>&amp;action=delete">
+<input type="hidden" name="display" value="acuityqueues">
 <input type="hidden" name="extdisplay" value="<?php echo $extdisplay ?>">
 <input type="hidden" name="action" value="<?php echo (($extdisplay != '') ? 'edit' : 'add') ?>">
 <div class="nav-container">
@@ -888,6 +888,30 @@ $hookdata = \FreePBX::Queues()->hookTabs();
 			</div>
 		</div>
 		<!--END Alert Info-->
+		<!--Call Info-->
+		<div class="element-container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="form-group">
+							<div class="col-md-3">
+								<label class="control-label" for="callinfo"><?php echo _("Call Info") ?></label>
+								<i class="fa fa-question-circle fpbx-help-icon" data-for="callinfo"></i>
+							</div>
+							<div class="col-md-9">
+								<?php echo FreePBX::View()->alertInfoDrawSelect("callinfo",(isset($callinfo)?$callinfo:''));?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span id="callinfo-help" class="help-block fpbx-help-block"><?php echo _("Add a Call-Info Header for Server Side Auto Answer")?></span>
+				</div>
+			</div>
+		</div>
+		<!--END Call Info-->
 		<div class="element-container">
 			<div class="row">
 				<div class="col-md-12">

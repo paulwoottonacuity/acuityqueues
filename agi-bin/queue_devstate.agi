@@ -2,7 +2,7 @@
 <?php
 
 $bootstrap_settings['include_compress'] = false;
-$restrict_mods = array('queues' => true);
+$restrict_mods = array('acuityqueues' => true);
 include '/etc/freepbx.conf';
 $agidir = \FreePBX::Config()->get('ASTAGIDIR');
 require $agidir."/phpagi.php";
@@ -17,5 +17,5 @@ require $agidir."/phpagi.php";
  *
  */
 
-$devstate = new FreePBX\modules\Queues\operations\Devstate(new \AGI(),\FreePBX::create()->astman,$argv);
+$devstate = new FreePBX\modules\Acuityqueues\operations\Devstate(new \AGI(),\FreePBX::create()->astman,$argv);
 $devstate->run();

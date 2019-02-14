@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 //include bootstrap
-$restrict_mods = array('queues' => true);
+$restrict_mods = array('acuityqueues' => true);
 $bootstrap_settings['freepbx_auth'] = false;
 include '/etc/freepbx.conf';
 

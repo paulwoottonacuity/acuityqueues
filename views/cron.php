@@ -2,8 +2,8 @@
 //Default to disabled:
 $cron_schedule = isset($cron_schedule)?$cron_schedule:'never';
 ?>
-<script type="text/javascript" src="modules/queues/assets/js/jquery-cron.js"></script>
-<link type="text/css" href="modules/queues/assets/css/jquery-cron.css" rel="stylesheet" />
+<script type="text/javascript" src="modules/acuityqueues/assets/js/jquery-cron.js"></script>
+<link type="text/css" href="modules/acuityqueues/assets/css/jquery-cron.css" rel="stylesheet" />
 <input type="hidden" name="cron_schedule" id="cron_schedule" value="<?php echo $cron_schedule?>">
 <input type="hidden" name="cron_minute" id="cron_minute" value="<?php echo $cron_minute?>" <?php echo ($cron_schedule == 'never'? 'disabled':'') ?>>
 <input type="hidden" name="cron_hour" id="cron_hour" value="<?php echo $cron_hour?>" <?php echo ($cron_schedule == 'never'? 'disabled':'') ?>>

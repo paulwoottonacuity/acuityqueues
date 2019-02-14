@@ -1,6 +1,6 @@
 <?php
 namespace FreePBX\modules;
-class Queues implements \BMO {
+class Acuityqueues implements \BMO {
 	public function __construct($freepbx = null) {
 		if ($freepbx == null) {
 			throw new Exception("Not given a FreePBX Object");
@@ -23,6 +23,7 @@ class Queues implements \BMO {
 			isset($request['agentannounce_id'])?$agentannounce_id = $request['agentannounce_id']:$agentannounce_id='';
 			isset($request['prefix'])?$prefix = $request['prefix']:$prefix='';
 			isset($request['alertinfo'])?$alertinfo = $request['alertinfo']:$alertinfo='';
+			isset($request['callinfo'])?$callinfo = $request['callinfo']:$callinfo='';
 			isset($request['rvol_mode'])?$rvol_mode = $request['rvol_mode']:$rvol_mode='dontcare';
 			isset($request['joinannounce_id'])?$joinannounce_id = $request['joinannounce_id']:$joinannounce_id='';
 			$maxwait = isset($request['maxwait'])?$request['maxwait']:'';
@@ -153,7 +154,7 @@ class Queues implements \BMO {
 							if (!empty($usage_arr)) {
 								$conflict_url = framework_display_extension_usage_alert($usage_arr);
 							} else {
-								queues_add($account,$name,$password,$prefix,$goto,$agentannounce_id,$members,$joinannounce_id,$maxwait,$alertinfo,$cwignore,$qregex,$queuewait,$use_queue_context,$dynmembers,$dynmemberonly,$togglehint,$qnoanswer, $callconfirm, $callconfirm_id, $monitor_type, $monitor_heard, $monitor_spoken, $answered_elsewhere);
+								queues_add($account,$name,$password,$prefix,$goto,$agentannounce_id,$members,$joinannounce_id,$maxwait,$alertinfo,$callinfo,$cwignore,$qregex,$queuewait,$use_queue_context,$dynmembers,$dynmemberonly,$togglehint,$qnoanswer, $callconfirm, $callconfirm_id, $monitor_type, $monitor_heard, $monitor_spoken, $answered_elsewhere);
 								needreload();
 								$this_dest = queues_getdest($account);
 								\fwmsg::set_dest($this_dest[0]);
@@ -168,7 +169,7 @@ class Queues implements \BMO {
 						break;
 						case "edit":  //just delete and re-add
 							queues_del($account);
-							queues_add($account,$name,$password,$prefix,$goto,$agentannounce_id,$members,$joinannounce_id,$maxwait,$alertinfo,$cwignore,$qregex,$queuewait,$use_queue_context,$dynmembers,$dynmemberonly,$togglehint,$qnoanswer, $callconfirm, $callconfirm_id, $monitor_type, $monitor_heard, $monitor_spoken, $answered_elsewhere);
+							queues_add($account,$name,$password,$prefix,$goto,$agentannounce_id,$members,$joinannounce_id,$maxwait,$alertinfo,$callinfo,$cwignore,$qregex,$queuewait,$use_queue_context,$dynmembers,$dynmemberonly,$togglehint,$qnoanswer, $callconfirm, $callconfirm_id, $monitor_type, $monitor_heard, $monitor_spoken, $answered_elsewhere);
 							needreload();
 						break;
 					}
@@ -183,7 +184,7 @@ class Queues implements \BMO {
 			$sth->execute(array("%".$query."%"));
 			$rows = $sth->fetchAll(\PDO::FETCH_ASSOC);
 			foreach($rows as $row) {
-				$results[] = array("text" => $row['descr'] . " (".$row['extension'].")", "type" => "get", "dest" => "?display=queues&view=form&extdisplay=".$row['extension']);
+				$results[] = array("text" => $row['descr'] . " (".$row['extension'].")", "type" => "get", "dest" => "?display=acuityqueues&view=form&extdisplay=".$row['extension']);
 			}
 		} else {
 			$sql = "SELECT * FROM queues_config WHERE extension LIKE ?";
@@ -191,14 +192,14 @@ class Queues implements \BMO {
 			$sth->execute(array("%".$query."%"));
 			$rows = $sth->fetchAll(\PDO::FETCH_ASSOC);
 			foreach($rows as $row) {
-				$results[] = array("text" => _("Queue")." ".$row['extension'], "type" => "get", "dest" => "?display=queues&view=form&extdisplay=".$row['extension']);
+				$results[] = array("text" => _("Queue")." ".$row['extension'], "type" => "get", "dest" => "?display=acuityqueues&view=form&extdisplay=".$row['extension']);
 			}
 		}
 	}
 
 	public function getActionBar($request){
 		switch($request['display']){
-			case 'queues':
+			case 'acuityqueues':
 				$buttons = array(
 					'delete' => array(
 						'name' => 'delete',

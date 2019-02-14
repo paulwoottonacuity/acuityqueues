@@ -1,5 +1,5 @@
 <?php
-namespace FreePBX\modules\Queues\operations;
+namespace FreePBX\modules\Acuityqueues\operations;
 class Devstate {
 	private $agi = null;
 	private $action = null;

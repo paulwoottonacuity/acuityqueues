@@ -12,6 +12,7 @@ function queues_add(
 	$joinannounce_id,
 	$maxwait,
 	$alertinfo='',
+	$callinfo='',
 	$cwignore='0',
 	$qregex='',
 	$queuewait='0',
@@ -144,6 +145,7 @@ function queues_add(
 	$descr			= isset($name) ? $name:'';
 	$grppre			= isset($prefix) ? $prefix:'';
 	$alertinfo		= isset($alertinfo) ? $alertinfo:'';
+	$callinfo		= isset($callinfo) ? $callinfo:'';
 	if (isset($joinannounce_id)) {
 		if ($joinannounce_id == "None" || $joinannounce_id == "") {
 			$joinannounce_id = NULL;
@@ -192,26 +194,26 @@ function queues_add(
 	$monitor_spoken	= isset($monitor_spoken) ? $monitor_spoken:'0';
 	// Assumes it has just been deleted
 	$sql = "INSERT INTO queues_config (
-			extension, descr, grppre, alertinfo, joinannounce_id,
-			ringing, agentannounce_id, maxwait, password, ivr_id,
-			callback_id, dest, cwignore, qregex, queuewait,
-			use_queue_context, togglehint, qnoanswer, callconfirm,
+			extension, descr, grppre, alertinfo, callinfo, 
+			joinannounce_id, ringing, agentannounce_id, maxwait, password,
+			ivr_id, callback_id, dest, cwignore, qregex,
+			queuewait, use_queue_context, togglehint, qnoanswer, callconfirm,
 			callconfirm_id, monitor_type, monitor_heard,
 			monitor_spoken
 		) VALUES (
 			?, ?, ?, ?, ?,
 			?, ?, ?, ?, ?,
 			?, ?, ?, ?, ?,
-			?, ?, ?, ?,
+			?, ?, ?, ?, ?,
 			?, ?, ?,
 			?
 		)";
 	$sth = $db->prepare($sql);
 	$values = array(
-		$extension, $descr, $grppre, $alertinfo, $joinannounce_id,
-		$ringing, $agentannounce_id, $maxwait, $password, $ivr_id,
-		$callback_id, $dest, $cwignore, $qregex, $queuewait,
-		$use_queue_context, $togglehint, $qnoanswer, $callconfirm,
+		$extension, $descr, $grppre, $alertinfo, $callinfo, 
+		$joinannounce_id, $ringing, $agentannounce_id, $maxwait, $password,
+		$ivr_id, $callback_id, $dest, $cwignore, $qregex,
+		$queuewait, $use_queue_context, $togglehint, $qnoanswer, $callconfirm,
 		$callconfirm_id, $monitor_type, $monitor_heard,
 		$monitor_spoken
 	);
@@ -342,6 +344,7 @@ function queues_get($account, $queues_conf_only=false) {
 
 		$results['prefix']        = $config['grppre'];
 		$results['alertinfo']     = $config['alertinfo'];
+		$results['callinfo']      = $config['callinfo'];
 		$results['agentannounce_id'] = $config['agentannounce_id'];
 		$results['maxwait']       = $config['maxwait'];
 		$results['name']          = $config['descr'];

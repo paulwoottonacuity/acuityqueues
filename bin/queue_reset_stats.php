@@ -1,14 +1,14 @@
 #!/usr/bin/env php
 <?php
-$restrict_mods                          = array('queues' => true, 'core' => true);
+$restrict_mods                          = array('acuityqueues' => true, 'core' => true);
 $bootstrap_settings['cdrdb']            = true;
 $bootstrap_settings['freepbx_auth']     = false;
 include '/etc/freepbx.conf';
 
 //ensure the queues module is avalible before continuing
-$mod_info = module_getinfo('queues', MODULE_STATUS_ENABLED);
+$mod_info = module_getinfo('acuityqueues', MODULE_STATUS_ENABLED);
 
-if (!isset($mod_info['queues'])) {
+if (!isset($mod_info['acuityqueues'])) {
         echo _('Queues module not found or is disabled. Aborting!' . PHP_EOL);
         exit(1);
 }
